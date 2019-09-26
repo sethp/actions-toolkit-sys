@@ -80,7 +80,7 @@ fn end_group_callable() {
 #[wasm_bindgen_test]
 fn group_callable() {
     let name = &"name".into();
-    let clo = Closure::<dyn Fn()>::new(move || {});
+    let clo = Closure::<dyn Fn()>::new(|| {});
     group(name, clo.as_ref().unchecked_ref());
     clo.forget();
 }
