@@ -24,23 +24,12 @@ doctest = false
 cfg-if = "^0.1.10"
 
 [dependencies.js-sys]
-version = "^0.3.27"
+version = "^0.3.28"
 features = []
 
 [dependencies.wasm-bindgen]
-version = "^0.2.50"
+version = "^0.2.51"
 features = ["nightly"]
 
 [dev-dependencies]
-wasm-bindgen-test = { version = "^0.2.50" }
-
-# [dependencies]
-# actions-toolkit-sys-core = { path = "crates/core" }
-
-# [workspace]
-# members = [
-#   "crates/core",
-# ]
-
-# [patch.crates-io]
-# actions-toolkit-sys-core = { path = "crates/core" }
+wasm-bindgen-test = { version = "=0.2.50" }
