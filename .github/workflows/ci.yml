@@ -68,24 +68,24 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
-  # FIXME: tests failing in ci (probably because of wasm-pack and test-threads)
-  # # verify that tests pass on linux
-  # linux-cargo-test:
-  #   needs: [skip-ci]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v1
-  #     - uses: actions-rs/cargo@v1
-  #       with:
-  #         command: install
-  #         args: wasm-pack
-  #     - run: npm ci
-  #     - run: wasm-pack test --node -- --all
-  #     - uses: actions-rs/cargo@v1
-  #       with:
-  #         command: install
-  #         args: cargo-tarpaulin
-  #     - run: cargo tarpaulin --out Xml
-  #     - run: bash <(curl -s https://codecov.io/bash)
-  #       env:
-  #         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  # verify that tests pass on linux
+  linux-cargo-test:
+    needs: [skip-ci]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: wasm-pack
+      - run: npm ci
+      - run: wasm-pack test --node -- --all
+      - uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: cargo-tarpaulin
+      - run: cargo tarpaulin --out Xml
+      - run: bash <(curl -s https://codecov.io/bash)
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
