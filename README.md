@@ -20,10 +20,6 @@
       ><img
         src="https://github.com/freebroccolo/actions-toolkit-sys/workflows/ci/badge.svg"
     /></a>
-    <a href="https://codecov.io/gh/freebroccolo/actions-toolkit-sys"
-      ><img
-        src="https://codecov.io/gh/freebroccolo/actions-toolkit-sys/branch/master/graph/badge.svg"
-    /></a>
     <a href="https://crates.io/crates/actions-toolkit-sys"
       ><img
         src="https://img.shields.io/librariesio/release/cargo/actions-toolkit-sys.svg?logo=rust"
