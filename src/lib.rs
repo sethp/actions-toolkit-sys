@@ -3,6 +3,5 @@
 #![deny(clippy::all)]
 #![deny(missing_docs)]
 
-/// Core functions for setting results, logging, registering secrets and exporting variables across
-/// actions
+/// Core functions for setting results, logging, registering secrets and exporting variables.
 pub mod core;
