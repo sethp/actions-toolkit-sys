@@ -7,6 +7,8 @@
 pub mod core;
 /// Execute your tools on the command line in a cross-platform way.
 pub mod exec;
+/// An Octokit client hydrated with the context of the current action.
+pub mod github;
 /// Core functions for CLI filesystem scenarios.
 pub mod io;
 /// Functions necessary for downloading and caching tools.
