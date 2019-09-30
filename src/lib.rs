@@ -9,3 +9,5 @@ pub mod core;
 pub mod exec;
 /// Core functions for CLI filesystem scenarios.
 pub mod io;
+/// Functions necessary for downloading and caching tools.
+pub mod tool_cache;
