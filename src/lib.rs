@@ -7,3 +7,5 @@
 pub mod core;
 /// Execute your tools on the command line in a cross-platform way.
 pub mod exec;
+/// Core functions for CLI filesystem scenarios.
+pub mod io;
