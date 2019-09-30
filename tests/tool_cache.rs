@@ -5,7 +5,7 @@ use wasm_bindgen_test::*;
 #[wasm_bindgen_test]
 fn download_tool_callable() {
     let url = &"url".into();
-    let clo = Closure::new(|_| {});
+    let clo = Closure::new(|_err| {});
     tool_cache::download_tool(url).catch(&clo);
     clo.forget();
 }
@@ -16,7 +16,7 @@ fn extract_7z_callable() {
     let dest = Default::default();
     #[allow(non_snake_case)]
     let _7z_path = Default::default();
-    let clo = Closure::new(|_| {});
+    let clo = Closure::new(|_err| {});
     tool_cache::extract_7z(file, dest, _7z_path).catch(&clo);
     clo.forget();
 }
@@ -26,7 +26,7 @@ fn extract_tar_callable() {
     let file = &"url".into();
     let dest = Default::default();
     let flags = Default::default();
-    let clo = Closure::new(|_| {});
+    let clo = Closure::new(|_err| {});
     tool_cache::extract_tar(file, dest, flags).catch(&clo);
     clo.forget();
 }
@@ -35,7 +35,7 @@ fn extract_tar_callable() {
 fn extract_zip_callable() {
     let file = &"file".into();
     let dest = Default::default();
-    let clo = Closure::new(|_| {});
+    let clo = Closure::new(|_err| {});
     tool_cache::extract_zip(file, dest).catch(&clo);
     clo.forget();
 }
@@ -46,7 +46,7 @@ fn cache_dir_callable() {
     let tool = &"tool".into();
     let version = &"version".into();
     let arch = Default::default();
-    let clo = Closure::new(|_| {});
+    let clo = Closure::new(|_err| {});
     tool_cache::cache_dir(source, tool, version, arch).catch(&clo);
     clo.forget();
 }
@@ -58,7 +58,7 @@ fn cache_file_callable() {
     let tool = &"tool".into();
     let version = &"version".into();
     let arch = Default::default();
-    let clo = Closure::new(|_| {});
+    let clo = Closure::new(|_err| {});
     tool_cache::cache_file(source, target, tool, version, arch).catch(&clo);
     clo.forget();
 }
