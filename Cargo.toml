@@ -6,7 +6,7 @@ authors = ["Darin Morrison <freebroccolo@users.noreply.github.com>"]
 license = "Apache-2.0 OR MIT"
 readme = "README.md"
 categories = ["github"]
-repository = "https://github.com/freebroccolo/actions-toolkit-sys"
+repository = "https://github.com/interfaces-rs/actions-toolkit-sys"
 description = """
 Raw bindings to the GitHub actions toolkit API for projects using wasm-bindgen.
 """
