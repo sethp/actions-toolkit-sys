@@ -21,9 +21,9 @@ pub struct InputOptions {
 /// The code to exit an action
 #[wasm_bindgen]
 pub enum ExitCode {
-    /// A code indicating that the action was successful
+    /// A code indicating that the action was successful.
     Success,
-    /// A code indicating that the action was a failure
+    /// A code indicating that the action was a failure.
     Failure,
 }
 
