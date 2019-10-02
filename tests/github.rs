@@ -16,7 +16,7 @@ fn graphql_callable() {
     let kit = GitHub::new(token, options);
     let query = &"query".into();
     let variables = None;
-    let clo = Closure::new(|_err| {});
+    let clo = Closure::wrap(Box::new(|_err| {}) as Box<_>);
     kit.graphql(query, variables).catch(&clo);
     clo.forget();
 }
