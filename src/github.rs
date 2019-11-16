@@ -68,7 +68,7 @@ extern {
     pub type GitHub;
 
     #[wasm_bindgen(method)]
-    pub fn graphql(this: &GitHub, query: &JsString, variables: Option<Object>) -> Promise;
+    pub fn graphql(this: &GitHub, query: &JsString, variables: Option<&Object>) -> Promise;
 
     #[wasm_bindgen(constructor)]
     pub fn new(token: &JsString, options: Option<Object>) -> GitHub;
