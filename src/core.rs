@@ -22,9 +22,9 @@ pub struct InputOptions {
 #[wasm_bindgen]
 pub enum ExitCode {
     /// A code indicating that the action was successful.
-    Success,
+    Success = 0,
     /// A code indicating that the action was a failure.
-    Failure,
+    Failure = 1,
 }
 
 #[wasm_bindgen(module = "@actions/core")]
