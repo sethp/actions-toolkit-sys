@@ -19,6 +19,7 @@ maintenance = { status = "experimental" }
 [lib]
 crate-type = ["cdylib", "rlib"]
 doctest = false
+test = false
 
 [dependencies]
 cfg-if = "^0.1.10"
