@@ -32,7 +32,6 @@ pub mod context {
         #[wasm_bindgen(method)]
         pub fn actor(this: &Context) -> JsString;
 
-        #[wasm_bindgen(method)]
         pub static context: Context;
     }
 

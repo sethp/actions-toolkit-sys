@@ -78,7 +78,6 @@ extern {
     pub fn end_group();
 
     /// Wrap an asynchronous function call in a group.
-    #[wasm_bindgen]
     pub fn group(name: &JsString, fun: &Function) -> Promise;
 
     // Saves state for current action, the state can only be retrieved by this action's post job execution.
