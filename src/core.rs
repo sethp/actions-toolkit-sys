@@ -84,4 +84,8 @@ extern {
     // Saves state for current action, the state can only be retrieved by this action's post job execution.
     #[wasm_bindgen(js_name = "saveState")]
     pub fn save_state(name: &JsString, value: &JsString);
+
+    // Gets the value of an state set by this action's main execution.
+    #[wasm_bindgen(js_name = "getState")]
+    pub fn get_state(name: &JsString) -> JsString;
 }
