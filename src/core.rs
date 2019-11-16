@@ -33,9 +33,9 @@ extern {
     #[wasm_bindgen(js_name = "exportVariable")]
     pub fn export_variable(name: &JsString, value: &JsString);
 
-    /// Exports the variable and registers a secret which will get masked from logs.
-    #[wasm_bindgen(js_name = "exportSecret")]
-    pub fn export_secret(name: &JsString, value: &JsString);
+    /// Registers a secret which will get masked from logs.
+    #[wasm_bindgen(js_name = "setSecret")]
+    pub fn set_secret(secret: &JsString);
 
     /// Prepends inputPath to the PATH (for this action and future actions).
     #[wasm_bindgen(js_name = "addPath")]
