@@ -24,12 +24,12 @@ doctest = false
 cfg-if = "^0.1.10"
 
 [dependencies.js-sys]
-version = "^0.3.28"
+version = "^0.3.31"
 features = []
 
 [dependencies.wasm-bindgen]
-version = "^0.2.51"
+version = "^0.2.54"
 features = []
 
 [dev-dependencies]
-wasm-bindgen-test = { version = "=0.3.1" }
+wasm-bindgen-test = { version = "=0.3.4" }
