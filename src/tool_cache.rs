@@ -25,7 +25,7 @@ extern {
     #[must_use] // Promise<string>
     pub fn extract_7z(file: &JsString, dest: Option<&JsString>, _7z_path: Option<&JsString>) -> Promise;
 
-    /// Extract a tar.
+    /// Extract a compressed tar archive.
     #[wasm_bindgen(js_name = "extractTar")]
     #[must_use] // Promise<string>
     pub fn extract_tar(file: &JsString, dest: Option<&JsString>, flags: Option<&JsString>) -> Promise;
