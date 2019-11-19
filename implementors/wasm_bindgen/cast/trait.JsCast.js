@@ -7,5 +7,4 @@ implementors["js_sys"] = [{text:"impl <a class=\"trait\" href=\"wasm_bindgen/cas
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()

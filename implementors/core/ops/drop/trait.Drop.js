@@ -8,5 +8,4 @@ implementors["wasm_bindgen"] = [{text:"impl&lt;T&gt; <a class=\"trait\" href=\"h
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()
