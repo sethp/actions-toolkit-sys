@@ -7,4 +7,5 @@ implementors["wasm_bindgen_backend"] = [{text:"impl <a class=\"trait\" href=\"qu
             } else {
                 window.pending_implementors = implementors;
             }
-        })()
+        
+})()
