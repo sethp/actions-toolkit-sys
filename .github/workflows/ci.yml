@@ -1,18 +1,8 @@
 name: ci
 on: [push, pull_request]
 jobs:
-  # skip all jobs if commit messages contain "[skip ci]" or "[ci skip]"
-  skip-ci:
-    runs-on: ubuntu-latest
-    steps:
-      - if: |
-          contains(join(github.event.commits.*.message), '[skip ci]') ||
-          contains(join(github.event.commits.*.message), '[ci skip]')
-        run: exit 1 # FIXME: previously we could use exit code 78 for "neutral"
-
   # verify that project builds (via "check" via "clippy") on linux
   linux-cargo-clippy:
-    needs: [skip-ci]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -28,7 +18,6 @@ jobs:
 
   # build the documentation
   linux-cargo-docs:
-    needs: [skip-ci]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -48,7 +37,6 @@ jobs:
 
   # verify that code is formatted
   linux-cargo-fmt:
-    needs: [skip-ci]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -64,7 +52,6 @@ jobs:
 
   # verify that tests pass on linux
   linux-cargo-test:
-    needs: [skip-ci]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
