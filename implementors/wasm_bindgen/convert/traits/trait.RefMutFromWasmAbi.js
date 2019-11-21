@@ -6,5 +6,4 @@ implementors["actions_toolkit_sys"] = [{text:"impl <a class=\"trait\" href=\"was
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()
