@@ -6,4 +6,5 @@ implementors["wasm_bindgen_backend"] = [];
             } else {
                 window.pending_implementors = implementors;
             }
-        })()
+        
+})()

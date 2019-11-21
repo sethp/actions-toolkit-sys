@@ -6,4 +6,5 @@ implementors["bumpalo"] = [{text:"impl&lt;'bump, T:&nbsp;'bump&gt; <a class=\"tr
             } else {
                 window.pending_implementors = implementors;
             }
-        })()
+        
+})()
