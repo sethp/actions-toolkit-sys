@@ -6,4 +6,5 @@ implementors["unicode_xid"] = [];
             } else {
                 window.pending_implementors = implementors;
             }
-        })()
+        
+})()

@@ -6,4 +6,5 @@ implementors["quote"] = [];
             } else {
                 window.pending_implementors = implementors;
             }
-        })()
+        
+})()

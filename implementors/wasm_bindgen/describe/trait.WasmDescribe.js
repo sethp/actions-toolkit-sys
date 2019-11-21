@@ -7,4 +7,5 @@ implementors["js_sys"] = [{text:"impl WasmDescribe for <a class=\"struct\" href=
             } else {
                 window.pending_implementors = implementors;
             }
-        })()
+        
+})()
