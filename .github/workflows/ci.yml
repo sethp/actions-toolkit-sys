@@ -11,12 +11,73 @@ jobs:
           || contains(github.event.head_commit.message, '[ci skip]')"
         run: exit 78
 
-  # verify that project builds (via "check" via "clippy") on linux
-  linux-cargo-clippy:
+  # cache cargo dependencies
+  cache-cargo:
     needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
+    - uses: actions-rs/cargo@v1
+      with:
+        command: update
+    - uses: actions/cache@v1
+      with:
+        path: ~/.cargo/registry
+        key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+    - uses: actions/cache@v1
+      with:
+        path: ~/.cargo/git
+        key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+    - uses: actions/cache@v1
+      with:
+        path: target
+        key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+    - uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        components: clippy
+    - uses: actions-rs/cargo@v1
+      with:
+        command: fetch
+
+  # cache node_modules
+  cache-node:
+    needs: [skip-commit]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
+    - run: npm ci
+
+  # verify that project builds (via "check" via "clippy") on linux
+  linux-cargo-clippy:
+    needs: [skip-commit, cache-cargo]
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v1
+      - uses: actions-rs/cargo@v1
+        with:
+          command: update
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -29,10 +90,25 @@ jobs:
 
   # build the documentation
   linux-cargo-docs:
-    needs: [skip-commit]
+    needs: [skip-commit, cache-cargo]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - uses: actions-rs/cargo@v1
+        with:
+          command: update
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -70,10 +146,25 @@ jobs:
 
   # verify that tests pass on linux
   linux-cargo-test:
-    needs: [skip-commit]
+    needs: [skip-commit, cache-cargo, cache-node]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - uses: actions-rs/cargo@v1
+        with:
+          command: update
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -82,5 +173,12 @@ jobs:
         with:
           command: install
           args: wasm-pack
-      - run: npm ci
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
       - run: wasm-pack test --node -- --all
