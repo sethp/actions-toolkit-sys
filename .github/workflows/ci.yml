@@ -70,12 +70,3 @@ jobs:
           args: wasm-pack
       - run: npm ci
       - run: wasm-pack test --node -- --all
-      # FIXME: how does coverage work with wasm-pack?
-      # - uses: actions-rs/cargo@v1
-      #   with:
-      #     command: install
-      #     args: cargo-tarpaulin
-      # - run: cargo tarpaulin --out Xml
-      # - run: bash <(curl -s https://codecov.io/bash)
-      #   env:
-      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
