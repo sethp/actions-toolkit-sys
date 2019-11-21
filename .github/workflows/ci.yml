@@ -1,8 +1,19 @@
 name: ci
 on: [push, pull_request]
 jobs:
+  # skip ci if the last commit contains the appropriate tag
+  skip-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - if: "contains(github.event.head_commit.message, '[skip-ci]')
+          || contains(github.event.head_commit.message, '[skip ci]')
+          || contains(github.event.head_commit.message, '[ci-skip]')
+          || contains(github.event.head_commit.message, '[ci skip]')"
+        run: exit 78
+
   # verify that project builds (via "check" via "clippy") on linux
   linux-cargo-clippy:
+    needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -18,6 +29,7 @@ jobs:
 
   # build the documentation
   linux-cargo-docs:
+    needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -41,6 +53,7 @@ jobs:
 
   # verify that code is formatted
   linux-cargo-fmt:
+    needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -57,6 +70,7 @@ jobs:
 
   # verify that tests pass on linux
   linux-cargo-test:
+    needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
