@@ -11,8 +11,6 @@ description = """
 Raw bindings to the GitHub actions toolkit API for projects using wasm-bindgen.
 """
 
-[features]
-
 [badges]
 maintenance = { status = "experimental" }
 
