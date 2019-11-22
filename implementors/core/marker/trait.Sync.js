@@ -14,5 +14,4 @@ implementors["wasm_bindgen_macro_support"] = [{text:"impl !<a class=\"trait\" hr
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()
