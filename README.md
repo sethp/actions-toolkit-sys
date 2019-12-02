@@ -6,7 +6,8 @@
       API for projects using <a href="https://github.com/rustwasm/wasm-bindgen"><code>wasm-bindgen</code></a></strong>
   </p>
   <p style="margin-bottom: 0.5ex;">
-    <a href="https://interfaces-rs.github.io/actions-toolkit-sys/actions_toolkit_sys"><img
+    <a
+      href="https://interfaces-rs.github.io/actions-toolkit-sys/actions_toolkit_sys"><img
         src="https://img.shields.io/badge/docs-latest-blueviolet?logo=Read-the-docs&logoColor=white"
         /></a>
     <a href="https://github.com/interfaces-rs/actions-toolkit-sys/actions"><img
